@@ -1,0 +1,546 @@
+@media only screen and (max-width: 970px) {
+  .factoryInfoStyle{
+    height: 668px;
+    /* border-radius:30px;
+    background-color: rgba(165, 36, 156, 0.71); */
+  }
+  .immediateStyle{
+    height: 960px;
+    /* border-radius:30px;
+    background-color: rgba(165, 36, 156, 0.71); */
+  }
+  .pieStyle{
+    height: 480px;
+    /* border-radius:30px;
+    background-color: rgba(165, 36, 156, 0.71); */
+  }
+  .chartStyle{
+    height: 420px;  
+    /* border-radius:30px;
+    background-color: rgba(165, 36, 156, 0.71); */
+  }
+  #rebot {
+    position: absolute;
+    width: 64px;
+    bottom: 3px;
+    /* height: 60%; */
+  }
+  .lineBot {
+    position: absolute;
+    right: 10px;
+    bottom: 6px;
+    border: none;
+    border-radius:10px;
+    width: 10%;
+  }
+  #messageList {
+    position: absolute;
+    left: 10%;
+    bottom: 6px;
+    border: none;
+    background-color: rgba(186, 246, 244, 0.63);
+    border-radius:10px;
+    width: 76%;
+    height: 60%;
+  }
+  .control-item{
+    font-size: 14px;
+    text-align: center;
+    height: 48px;
+    line-height: 48px;
+    color: #1ea4b6
+  }
+}
+
+@media only screen and (min-width: 970px) {
+  .factoryInfoStyle{
+    height: 75%;
+    /* border-radius:30px;
+    background-color: rgba(165, 36, 156, 0.71); */
+  }
+  .immediateStyle{
+    height: 75%;
+    /* border-radius:30px;
+    background-color: rgba(165, 36, 156, 0.71); */
+  }
+  .pieStyle{
+    position: absolute;
+    height: 90%;
+    left: 0px;
+    bottom: 0px;
+    /* border-radius:30px;
+    background-color: rgba(165, 36, 156, 0.71); */
+  }
+  .chartStyle{
+    position: absolute;
+    top:0px;
+    right: 0px;
+    bottom: 0px;
+    /* border-radius:30px;
+    background-color: rgba(165, 36, 156, 0.71); */
+  }
+  #rebot {
+    position: absolute;
+    width: 10%;
+    bottom: 6px;
+    /* height: 60%; */
+  }
+  .lineBot {
+    position: absolute;
+    right: 10px;
+    bottom: 6px;
+    border: none;
+    border-radius:10px;
+    width: 16%;
+  }
+  #messageList {
+    position: absolute;
+    left: 10%;
+    bottom: 6px;
+    border: none;
+    background-color: rgba(186, 246, 244, 0.63);
+    border-radius:10px;
+    width: 70%;
+    height: 60%;
+  }
+  .control-item{
+    font-size: 16px;
+    text-align: center;
+    height: 48px;
+    line-height: 48px;
+    color: #1ea4b6
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  p.title {
+    height: 68px;
+    font-size: 31px;
+    line-height:68px;
+    background: -webkit-linear-gradient(top,#0bfdfd 0,#2b63a3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+  }
+  .data-title {
+    font-size: 24px;
+    background: -webkit-linear-gradient(top,#0bfdfd 0,#2b87a3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .mainStyle2{
+    height: 400px;
+  }
+  #temperature{
+    position: absolute;
+    width: 66px;
+    top: 31px;
+    left: 41%;
+  }
+  #temperature-style{
+    position: absolute;
+    top: 63px;
+    left: 66%;
+    height: 31px;
+    padding: 5px;
+    width: 60px;
+    background: -webkit-linear-gradient(left top,#fbff00,#f38c06);
+    background: -o-linear-gradient(bottom right,#fbff00,#f38c06);
+    background: -moz-linear-gradient(bottom right,#fbff00,#f38c06);
+    background: linear-gradient(to bottom right,#fbff00,#f38c06);
+    border-radius:360px 160px 160px 360px / 160px 66px 66px 160px;     
+    text-align: center;
+  }
+  #temperature-data{
+    position: absolute;
+    font-size: 16px;
+    right: 10px;
+    color: rgb(0, 0, 0);
+    /* right: 16%; */
+  }
+  #humidity {
+    position: absolute;
+    top: 68%;
+    left: 35%;
+    width: 60px;
+    height: 60px;
+    border-radius:250px 0 170px 80px / 170px 0 250px 80px;
+    background: -webkit-linear-gradient(left top,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -o-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -moz-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: linear-gradient(to bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+  }
+  #humidity::before {
+    content: '';
+    position: absolute;
+    right: 30px;
+    top: -30px;
+    width: 30px;
+    height: 30px;
+    border-radius:250px 0 170px 80px / 170px 0 250px 80px;
+    background: -webkit-linear-gradient(left top,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -o-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -moz-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: linear-gradient(to bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+  }
+  #humidity::after {
+    content: '';
+    position: absolute;
+    left: 73px;
+    top: -31px;
+    width: 40px;
+    height: 40px;
+    border-radius:250px 0 170px 80px / 170px 0 250px 80px;
+    background: -webkit-linear-gradient(left top,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -o-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -moz-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: linear-gradient(to bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+  }
+  #humidity-data {
+    position: absolute;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    top: 16px;
+    right: 16%;
+    /* border: 3px solid #cdcdcd; */
+  }
+  #rebot {
+    position: absolute;
+    left: 36px;
+    width: 66px;
+    top: 40px;
+    height: 120px;
+  }
+  .lineBot {
+    position: absolute;
+    right: 10px;
+    bottom: 60%;
+    border: none;
+    border-radius:10px;
+    width: 90px;
+    height: 90px;
+  }
+  #messageList {
+    position: absolute;
+    bottom: 6%;
+    height: 160px;
+    width: 94%;
+    left: 10px;
+    width: auto 0;
+    border: none;
+    background-color: rgba(186, 246, 244, 0.63);
+    border-radius:10px;
+  }
+  .mainStyle3{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    margin-bottom: 10px;
+    height: 196px;
+    border-radius:10px;
+    background-color: rgba(43, 40, 40, 0.71);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  p.title {
+    font-size: 51px;
+    background: -webkit-linear-gradient(top,#0bfdfd 0,#2b63a3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .data-title {
+    font-size: 30px;
+    background: -webkit-linear-gradient(top,#0bfdfd 0,#2b87a3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .mainStyle2{
+    height: 25%;
+  }
+  #temperature{
+    position: absolute;
+    width: 60px;
+    bottom: 14px;
+    left: 33%;
+  }
+  #temperature-style{
+    position: absolute;
+    top: 50%;
+    left: 46%;
+    height: 31px;
+    padding: 5px;
+    width: 60px;
+    background: -webkit-linear-gradient(left top,#fbff00,#f38c06);
+    background: -o-linear-gradient(bottom right,#fbff00,#f38c06);
+    background: -moz-linear-gradient(bottom right,#fbff00,#f38c06);
+    background: linear-gradient(to bottom right,#fbff00,#f38c06);
+    border-radius:360px 160px 160px 360px / 160px 66px 66px 160px;    
+    text-align: center;
+  }
+  #temperature-data{
+    position: absolute;
+    font-size: 16px;
+    right: 10px;
+    color: rgb(0, 0, 0);
+    /* right: 16%; */
+  }
+  #humidity {
+    position: absolute;
+    bottom: 14px;
+    right: 20%;
+    width: 60px;
+    height: 60px;
+    border-radius:250px 0 170px 80px / 170px 0 250px 80px;
+    background: -webkit-linear-gradient(left top,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -o-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -moz-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: linear-gradient(to bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+  }
+  #humidity::before {
+    content: '';
+    position: absolute;
+    right: 30px;
+    top: -30px;
+    width: 30px;
+    height: 30px;
+    border-radius:250px 0 170px 80px / 170px 0 250px 80px;
+    background: -webkit-linear-gradient(left top,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -o-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -moz-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: linear-gradient(to bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+  }
+  #humidity::after {
+    content: '';
+    position: absolute;
+    left: 73px;
+    top: -31px;
+    width: 40px;
+    height: 40px;
+    border-radius:250px 0 170px 80px / 170px 0 250px 80px;
+    background: -webkit-linear-gradient(left top,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -o-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: -moz-linear-gradient(bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+    background: linear-gradient(to bottom right,rgb(17, 223, 236),rgb(6, 16, 246));
+  }
+  #humidity-data {
+    position: absolute;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    top: 16px;
+    right: 16%;
+    /* border: 3px solid #cdcdcd; */
+  }
+  .mainStyle3{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    margin-bottom: 10px;
+    height: 146px;
+    border-radius:10px;
+    background-color: rgba(43, 40, 40, 0.71);
+  }
+}
+@media only screen and (max-width: 300px) {
+  .control-item{
+    font-size: 10px;
+    text-align: center;
+    height: 48px;
+    line-height: 48px;
+    color: #1ea4b6
+  }
+}
+/* div.title {
+  position: absolute;
+  left: 10px;
+} */
+.data {
+  position: absolute;
+  top:74px;
+  left: 10px;
+  right: 10px;
+  bottom: 0px;
+  border-radius:10px;
+  background-color: rgba(43, 40, 40, 0.71);
+  /* border: 6px solid rgba(43, 40, 40, 0.71); */
+}
+.battery1-info {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  height: 45%;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid #cdcdcd;
+}
+.battery1 {
+  position: absolute;
+  top: 30%;
+  width: 60px;
+  height: 131px;
+  border-radius: 5px 5px 5px 5px;
+  margin-left: 10px;
+  /* border: 3px solid #cdcdcd; */
+}
+#battery1-ups {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  border-radius: 5px 5px 5px 5px;
+  border: 3px solid #cdcdcd;
+}
+#battery1-ups::before{
+	content: '';
+	position: absolute;
+  bottom:0px;
+	width: 100%;
+	height: 10%;
+  background-color: #cdcdcd;
+	border: 3px solid #cdcdcd;
+}
+#battery1-ups::after{
+	position: absolute;
+	top: -10px;
+	left: 30%;
+	width: 40%;
+	height: 10px;
+  background-color: #cdcdcd;
+	border: 3px solid #cdcdcd;
+  content: '';
+}
+.battery2-info {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 45%;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid #cdcdcd;
+}
+.battery2 {
+  position: absolute;
+  top: 30%;
+  width: 60px;
+  height: 131px;
+  border-radius: 5px 5px 5px 5px;
+  margin-left: 10px;
+  /* border: 3px solid #cdcdcd; */
+}
+#battery2-ups {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  border-radius: 5px 5px 5px 5px;
+  border: 3px solid #cdcdcd;
+}
+#battery2-ups::before{
+	content: '';
+	position: absolute;
+  bottom:0px;
+	width: 100%;
+	height: 10%;
+  background-color: #cdcdcd;
+	border: 3px solid #cdcdcd;
+}
+#battery2-ups::after{
+	position: absolute;
+	top: -10px;
+	left: 30%;
+	width: 40%;
+	height: 10px;
+  background-color: #cdcdcd;
+	border: 3px solid #cdcdcd;
+  content: '';
+}
+.battery-name {
+  position: absolute;
+  width: 100%;
+  color:#ffffff;
+  bottom:0px;
+}
+.battery-name p {
+  text-align:center;
+}
+.battery-data {
+  position: relative;
+  width: auto;
+  height: 100%;
+  margin-left: 76px;
+  margin-right:0px;
+  border-left: 1px solid #cdcdcd;
+}
+.data-left {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  margin-left: 0px;
+  /* border: 3px solid #cdcdcd; */
+}
+.data-right {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  margin-left: 50%;
+  /* border: 3px solid #cdcdcd; */
+}
+.battery-value {
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+}
+div.immediate {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 0px;
+  border-radius:10px;
+  background-color: rgba(43, 40, 40, 0.71);
+}
+div.message {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  left: 10px;
+  bottom: 10px;
+  border-radius:10px;
+  background-color: rgba(43, 40, 40, 0.71);
+}
+.current {
+  width:100%;
+  height: 30%;
+  /* margin-left: 40%; */
+}
+#pie {
+  position: absolute;
+  top: 30px;
+  bottom: 10px;
+  right: 10px;
+  left: 10px;
+  border-radius:10px;
+  /* border: 3px solid #cdcdcd; */
+}
+div.history {
+  position: absolute;
+  bottom: 10px;
+  top: 20px;
+  right: 10px;
+  left: 10px;
+  border-radius:10px;
+  background-color: rgba(43, 40, 40, 0.71);
+}
+/* .temperature-data{
+  height: 102.63px;
+  line-height: 102.63px;
+  color: white;
+} */
+.btnStyle{
+  position: absolute;
+  top: 36px;
+  right: 10px;
+  left: 10px;
+}
+.btn{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}

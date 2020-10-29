@@ -1,0 +1,387 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <script src="/jquery/jquery.min.js"></script>
+  <title>smart data center</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="/bootstrapcdn/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+  <link rel="stylesheet" href="/bootcss/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+  <link rel="stylesheet" href="bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+    var socket = io.connect();
+  </script>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <script src="highcharts.js"></script>
+  <script src="highcharts-3d.js"></script>
+  <script src="exporting.js"></script>
+  <script src="export-data.js"></script>
+  <link rel="stylesheet" type="text/css" href="temperature.css">
+  <!-- <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <script type="text/javascript" src="config.js"></script> -->
+  <script>
+    var piePercent = [
+      { name: '冷氣', y: parseInt("{{powerMeterPower}}") },
+      { name: 'UPS1', y: parseInt("{{upsPower_A}}") },
+      { name: 'UPS2', y: parseInt("{{upsPower_B}}") }
+    ];
+    console.log(piePercent);
+    // function a(){
+    //   var styleElem = document.head.appendChild(document.createElement("style"));
+    //   styleElem.innerHTML = "#battery1-ups::before {height: 100%;}";
+    // }
+    // function button(){
+    //   var textarea = $("#messageList").append("Fifth Avenue, New York City\n");
+    //   textarea.scrollTop(textarea[0].scrollHeight - textarea.height());
+    // }
+    function D0() {
+      $.ajax({
+        type: "POST",
+        url: "ET7044",
+        dataType: "text",
+        data: {
+          data: "D0"
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+
+    function D1() {
+      $.ajax({
+        type: "POST",
+        url: "ET7044",
+        dataType: "text",
+        data: {
+          data: "D1"
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+
+    function D2() {
+      $.ajax({
+        type: "POST",
+        url: "ET7044",
+        dataType: "text",
+        data: {
+          data: "D2"
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+      function fan1(){
+        $.ajax({
+        type: "POST",
+        url: "/7F_left_fan",
+        dataType: "text",
+        data: {
+          data: "fan1"
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan2(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_left_fan",
+        dataType: "text",
+        data: {
+          data: "fan2"
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan3(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_right_fan",
+        dataType: "text",
+        data: {
+          data: "fan3"
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan4(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_right_fan",
+        dataType: "text",
+        data: {
+          data: "fan4"
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+  </script>
+</head>
+
+<body style="background-color:#000000;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5 col-sm-12 factoryInfoStyle">
+        <div>
+          <p class="title">Smart Data Center</p>
+        </div>
+        <div class="data">
+          <p class="data-title">機房不斷電系統狀態</p>
+          <div class="battery1-info">
+            <div class="battery1">
+              <div id="battery1-ups"></div>
+              <div class="battery-name">
+                <p>UPS1<br>
+                  <span id="battery1-status"></span>
+                </p>
+              </div>
+            </div>
+            <div class="battery-data">
+              <div class="data-left battery-value">
+                輸入電壓:
+                <span id="inputVolt_A"></span>(V)<br>
+                輸出電壓:
+                <span id="outputVolt_A"></span>(V)<br>
+                輸出電流:
+                <span id="outputAmp_A"></span>(A)<br>
+                輸出狀態:
+                <span id="systemMode_A"></span><br>
+                電池健康狀態:
+                <span id="batteryHealth_A"></span><br>
+                ups內部溫度:
+                <span id="batteryTemp_A">(˚C)</span><br>
+              </div>
+              <div class="data-right battery-value">
+                輸入頻率:
+                <span id="inputFreq_A"></span>(Hz)<br>
+                輸出頻率:
+                <span id="outputFreq_A"></span>(Hz)<br>
+                輸出瓦特:
+                <span id="outputWatt_A"></span>(kw)<br>
+                輸出負載比:
+                <span id="outputPercent_A"></span>(%)<br>
+                充電模式:
+                <span id="batteryCharge_Mode_A"></span><br>
+                剩餘輸出時間:
+                <span id="batteryRemain_A"></span><br>
+              </div>
+            </div>
+          </div>
+          <div class="battery2-info">
+            <div class="battery2">
+              <div id="battery2-ups"></div>
+              <div class="battery-name">
+                <p>UPS2<br>
+                  <span id="battery2-status"></span>
+                </p>
+              </div>
+            </div>
+            <div class="battery-data">
+              <div class="data-left battery-value">
+                輸入電壓:
+                <span id="inputVolt_B"></span>(V)<br>
+                輸出電壓:
+                <span id="outputVolt_B"></span>(V)<br>
+                輸出電流:
+                <span id="outputAmp_B"></span>(A)<br>
+                輸出狀態:
+                <span id="systemMode_B"></span><br>
+                電池健康狀態:
+                <span id="batteryHealth_B"></span><br>
+                ups內部溫度:
+                <span id="batteryTemp_B">(˚C)</span><br>
+              </div>
+              <div class="data-right battery-value">
+                輸入頻率:
+                <span id="inputFreq_B"></span>(Hz)<br>
+                輸出頻率:
+                <span id="outputFreq_B"></span>(Hz)<br>
+                輸出瓦特:
+                <span id="outputWatt_B"></span>(kw)<br>
+                輸出負載比:
+                <span id="outputPercent_B"></span>(%)<br>
+                充電模式:
+                <span id="batteryCharge_Mode_B"></span><br>
+                剩餘輸出時間:
+                <span id="batteryRemain_B"></span><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7 col-sm-12 immediateStyle">
+        <div class="immediate">
+          <p class="data-title">電流統計</p>
+          <div class="row">
+            <div class="col-md-5 col-xs-12 pieStyle">
+              <div id="pie">
+                <div id="container"></div>
+              </div>
+            </div>
+            <div class="col-md-7 col-xs-12 chartStyle">
+              <div id="air-conditioner" class="current"></div>
+              <div id="ups1" class="current"></div>
+              <div id="ups2" class="current"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12 mainStyle2">
+        <div class="message">
+          <p class="data-title">機房溫溼度</p>
+          <div>
+            <div class="row">
+              <img src="temperature.png" alt="temperature" id="temperature">
+              <div id="temperature-style">
+                <p id="temperature-data">26°C</p>
+              </div>
+            </div>
+          </div>
+          <div id="humidity">
+            <p id="humidity-data"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12 mainStyle2">
+        <div class="history">
+          <p class="data-title">Robot 24-hour monitoring</p>
+          <img src="8851f1e225910baa24be1fa547e103ec.png" alt="rebot" id="rebot">
+          <textarea name="messageList" id="messageList" disabled="true"></textarea>
+          <img src="lineBot.png" alt="lineBot" class="lineBot">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mainStyle3">
+          <div class="row">
+            <div class="col-md-4">
+              <p class="data-title">ET7044</p>
+            </div>
+          </div>
+          <div class="row btnStyle">
+            <div class="col-md-4 col-sm-4">
+              <div class="col-md-5 col-sm-6 col-xs-5 control-item">
+                進風風扇：
+              </div>
+              <div class="col-md-7 col-sm-6 col-xs-7">
+                <button class="btn btn-primary" id="D0" onclick="D0()">waiting data</button>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="col-md-5 col-sm-6 col-xs-5 control-item">
+                加溼器：
+              </div>
+              <div class="col-md-7 col-sm-6 col-xs-7">
+                <button class="btn btn-primary" id="D1" onclick="D1()">waiting data</button>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+              <div class="col-md-5 col-sm-6 col-xs-5 control-item">
+                排風風扇：
+              </div>
+              <div class="col-md-7 col-sm-6 col-xs-7">
+                <button class="btn btn-primary" id="D2" onclick="D2()">waiting data</button>
+              </div>
+          </div>
+        <div class="col-md-12 mainStyle2">
+          <div class="row btnStyle">
+            <p class="data-title">7樓風扇</p>
+            <div class="col-md-6 col-sm-4">
+              <div class="col-md-5 col-sm-6 col-xs-5 control-item">
+                風扇1
+              </div>
+              <div class="col-md-7 col-sm-6 col-xs-7">
+                <button class="btn btn-primary" id="fan1" onclick="fan1()">waiting data</button>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-4">
+              <div class="col-md-5 col-sm-6 col-xs-5 control-item">
+                風扇2
+              </div>
+              <div class="col-md-7 col-sm-6 col-xs-7">
+                <button class="btn btn-primary" id="fan2" onclick="fan2()">waiting data</button>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-4">
+              <div class="col-md-5 col-sm-6 col-xs-5 control-item">
+                風扇3
+              </div>
+              <div class="col-md-7 col-sm-6 col-xs-7">
+                <button class="btn btn-primary" id="fan3" onclick="fan3()">waiting data</button>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-4">
+              <div class="col-md-5 col-sm-6 col-xs-5 control-item">
+                風扇4
+              </div>
+              <div class="col-md-7 col-sm-6 col-xs-7">
+                <button class="btn btn-primary" id="fan4" onclick="fan4()">waiting data</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <script language="JavaScript" src="/highcharts/air-conditioner.js"></script>
+      <script language="JavaScript" src="/highcharts/ups1.js"></script>
+      <script language="JavaScript" src="/highcharts/ups2.js"></script>
+      <script language="JavaScript" src="/highcharts/pie.js"></script>
+      <!-- <script type="text/javascript" src="/temperature/temperature.js"></script> -->
+      <script type="text/javascript" src="socket.js"></script>
+</body>
+
+</html>

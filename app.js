@@ -28,21 +28,30 @@ let piePercent = [
 //ET7044 status
 let et7044Status, D0, D1, D2;
 var Avg_temp = [] ;  
-var time_array = [];
+var time_array = []
 MongoClient.connect(process.env.MONGODB, (err, client) => {
     console.log(err)
-    let db = client.db("data_test");
+    let db = client.db("rpi_left");
+    let db2 = client.db("rpi_right")
     mongodb = new MongoDB(db);
+    mognodb_right = new MongoDB(db2)
     new Promise(function (resolve, reject) {
-        resolve(mongodb.aggregateAvgPieData());
+        resolve(mongodb.LeftAverageData());
     }).then(function (value) {
-        Avg_temp.push(JSON.stringify(value))
-        time_array.push(new Date().getHours()+":00:00")
-        io.emit('piePercent', Avg_temp);
-        io.emit('time',time_array);
+        io.emit('Avg_temp_left', Math.round(value[2]*100)/100);
+        io.emit('Avg_humid_left', Math.round(value[1]*100)/100);
+        io.emit('Avg_CO2_left', Math.round(value[0]*100)/100);
         console.log(new Date() + JSON.stringify(value));
-        console.log(Avg_temp)
-        console.log(time_array)
+        console.log(value)
+    });
+    new Promise(function (resolve, reject) {
+        resolve(mognodb_right.RightAverageData());
+    }).then(function (value) {
+        io.emit('Avg_temp_right', Math.round(value[2]*100)/100);
+        io.emit('Avg_humid_right', Math.round(value[1]*100)/100);
+        io.emit('Avg_CO2_right', Math.round(value[0]*100)/100);
+        console.log(new Date() + JSON.stringify(value));
+        console.log(value)
     });
 });
 
@@ -78,7 +87,7 @@ mqttClient.on('message', (topic, message) => {
             break;
         case 'TVOC_left':
             // console.log(message.toString());
-            io.emit('TVOC', message.toString());
+            io.emit('TVOC_left', message.toString());
             break;
         case 'humid_right':
             // console.log(message.toString());
@@ -116,19 +125,24 @@ mqttClient.on('message', (topic, message) => {
 //更新圓餅圖
 setInterval(() => {
     new Promise(function (resolve, reject) {
-        resolve(mongodb.aggregateAvgPieData());
+        resolve(mongodb.LeftAverageData());
     }).then(function (value) {
+        io.emit('Avg_temp_left', Math.round(value[2]*100)/100);
+        io.emit('Avg_humid_left', Math.round(value[1]*100)/100);
+        io.emit('Avg_CO2_left', Math.round(value[0]*100)/100);
         console.log(new Date() + JSON.stringify(value));
-        if(Avg_temp.length = 24){
-            Avg_temp.shift(); 
-            Avg_temp.push(JSON.stringify(value))
-        }
-        else{
-        Avg_temp.push(JSON.stringify(value))
-        }
-        io.emit('piePercent', Avg_temp);
+        console.log(value)
     });
-}, 3600000);
+    new Promise(function (resolve, reject) {
+        resolve(mognodb_right.RightAverageData());
+    }).then(function (value) {
+        io.emit('Avg_temp_right', Math.round(value[2]*100)/100);
+        io.emit('Avg_humid_right', Math.round(value[1]*100)/100);
+        io.emit('Avg_CO2_right', Math.round(value[0]*100)/100);
+        console.log(new Date() + JSON.stringify(value));
+        console.log(value)
+    });
+}, 2000);
 
 // setInterval(() => {
 //   mongodb.yesterdayAvgPowerRobot();
@@ -160,6 +174,7 @@ router.post('/cameraPower', cameraPower);
 async function index(ctx) {
     ctx.body = await ctx.render('smart', {
         "powerMeterPower": Avg_temp,
+        "timedata" : time_array,
         // "upsPower_A": 123,
         // "upsPower_B": 123
     });
@@ -221,24 +236,24 @@ async function SevenFloor_right_fan(ctx) {
     let fan_control = ctx.request.body.data;
     switch (fan_control){
         case 'fan3':
-            if(fanStatus2[0] != '正轉' && fanStatus2[0] != '反轉'){
+            if(fanStatus2[0] != '抽風' && fanStatus2[0] != '進風'){
                 mqttClient.publish('arduino', '5');
             }
-            if(fanStatus2[0] != '關閉' && fanStatus2[0] != '反轉'){
+            if(fanStatus2[0] != '關閉' && fanStatus2[0] != '進風'){
                 mqttClient.publish('arduino', '6');
             }
-            if(fanStatus2[0] != '正轉' && fanStatus2[0] != '關閉'){
+            if(fanStatus2[0] != '抽風' && fanStatus2[0] != '關閉'){
                 mqttClient.publish('arduino', 'c');
             }
             break;
         case 'fan4':
-            if(fanStatus2[1] != '正轉' && fanStatus2[1] != '反轉'){
+            if(fanStatus2[1] != '抽風' && fanStatus2[1] != '進風'){
                 mqttClient.publish('arduino', '7');
             }
-            if(fanStatus2[1] != '關閉' && fanStatus2[1] != '反轉'){
+            if(fanStatus2[1] != '關閉' && fanStatus2[1] != '進風'){
                 mqttClient.publish('arduino', '8');
             }
-            if(fanStatus2[1] != '正轉' && fanStatus2[1] != '關閉'){
+            if(fanStatus2[1] != '抽風' && fanStatus2[1] != '關閉'){
                 mqttClient.publish('arduino', 'd');
             }
             break;
@@ -260,3 +275,4 @@ server.listen(process.env.PORT, function () {
     let port = server.address().port;
     console.log("App now running on port", port);
 });
+

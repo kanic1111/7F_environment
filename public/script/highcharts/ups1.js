@@ -1,5 +1,5 @@
 var outputAmp_A = 0;
-socket.on("tempareture", function (data) {
+socket.on("tempareture_right", function (data) {
   if (data) {
     outputAmp_A = Number(data);
   }
@@ -44,7 +44,7 @@ $(document).ready(function() {
     var yAxis = {
       tickInterval: 0.01,
       title: {
-        text: '電流（A)',
+        text: '氣溫（C)',
         style:{
           color: '#ffffff'
         }

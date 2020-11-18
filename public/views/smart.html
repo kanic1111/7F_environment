@@ -32,7 +32,8 @@
     <script type="text/javascript" src="config.js"></script> -->
   <script>
     var piePercent = [
-      ("{{powerMeterPower}}")
+      ("{{powerMeterPower}}"),
+      ("{{timedata}}"),
       // { name: 'UPS1', y: parseInt("{{upsPower_A}}") },
       // { name: 'UPS2', y: parseInt("{{upsPower_B}}") }
     ];
@@ -200,6 +201,14 @@
                 濕度:
                 <span id="humid_left"></span>(%)<br>
               </div>
+              <div class="data-right battery-value">
+                平均氣溫
+                <span id="Avg_temp_left"></span>(C)<br>
+                平均二氧化碳濃度
+                <span id="Avg_CO2_left"></span>(CO2)<br>
+                平均濕度
+                <span id="Avg_humid_left"></span>(%)<br>
+              </div>
             </div>
           </div>
           <div class="battery2-info">
@@ -224,22 +233,30 @@
                 濕度:
                 <span id="humid_right"></span>(%)<br>
               </div>
+              <div class="data-right battery-value">
+                平均氣溫
+                <span id="Avg_temp_right"></span>(C)<br>
+                平均二氧化碳濃度
+                <span id="Avg_CO2_right"></span>(CO2)<br>
+                平均濕度
+                <span id="Avg_humid_right"></span>(%)<br>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-7 col-sm-12 immediateStyle">
         <div class="immediate">
-          <p class="data-title">電流統計</p>
+          <p class="data-title">環境數據</p>
           <div class="row">
-            <div class="col-md-5 col-xs-12 pieStyle">
-              <div id="pie">
-                <div id="container"></div>
-              </div>
+            <div class="col-md-6 col-xs-12 pieStyle">
+              <div id="leftlab_temp" class="current"></div>
+              <div id="leftlab_humid" class="current"></div>
+              <div id="leftlab_CO2" class="current"></div>
             </div>
-            <div class="col-md-7 col-xs-12 chartStyle">
-              <div id="air-conditioner" class="current"></div>
+            <div class="col-md-6 col-xs-12 chartStyle">
               <div id="ups1" class="current"></div>
+              <div id="air-conditioner" class="current"></div>
               <div id="ups2" class="current"></div>
             </div>
           </div>
@@ -294,7 +311,9 @@
       <script language="JavaScript" src="/highcharts/air-conditioner.js"></script>
       <script language="JavaScript" src="/highcharts/ups1.js"></script>
       <script language="JavaScript" src="/highcharts/ups2.js"></script>
-      <script language="JavaScript" src="/highcharts/pie.js"></script>
+      <script language="JavaScript" src="/highcharts/leftlab_temp.js"></script>
+      <script language="JavaScript" src="/highcharts/leftlab_humid.js"></script>
+      <script language="JavaScript" src="/highcharts/leftlab_CO2.js"></script>
       <!-- <script type="text/javascript" src="/temperature/temperature.js"></script> -->
       <script type="text/javascript" src="socket.js"></script>
 </body>

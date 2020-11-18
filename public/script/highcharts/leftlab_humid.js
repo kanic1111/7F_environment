@@ -1,7 +1,7 @@
-var outputAmp_B = 0;
-socket.on("Avg_temp", function (data) {
+var humid_left = 0;
+socket.on("humid_left", function (data) {
   if (data) {
-    outputAmp_B = Number(data);
+    humid_left = Number(data);
   }
 });
 
@@ -16,15 +16,15 @@ $(document).ready(function() {
           // set up the updating of the chart each second
           var series = this.series[0];
           setInterval(function () {
-            var x = (new Date()).getTime(), // current time
-            y = outputAmp_B;
+            var x = (new Date()).getTime(), // time
+            y = humid_left;
             series.addPoint([x, y], true, true);
-          }, 3600000);
+          }, 1000);
         }
       }
     };
     var title = {
-      text: '實驗室平均溫度',
+      text: '實驗室空氣濕度(後門)',
       style: {
         color: '#ffffff'
       }
@@ -44,7 +44,7 @@ $(document).ready(function() {
     var yAxis = {
       tickInterval: 0.01,
       title: {
-        text: '平均溫度(C)',
+        text: '氣溫(C)',
         style:{
           color: '#ffffff'
         }
@@ -92,14 +92,14 @@ $(document).ready(function() {
       enabled: false
     };
     var series= [{
-      name: 'Avg_temp',
+      name: '空氣濕度',
       data: (function () {
         // generate an array of random data
         var data = [],time = (new Date()).getTime(),i;
-        for (i = -23; i <= 0; i += 1) {
+        for (i = -19; i <= 0; i += 1) {
           data.push({
-            x: time + i * 3600000,
-            y: Math.random() * 3+22
+            x: time + i * 1000,
+            y: Math.random()
           });
         }
         return data;
@@ -128,6 +128,6 @@ $(document).ready(function() {
         useUTC: false
       }
     });
-    $('#pie').highcharts(json);
+    $('#leftlab_humid').highcharts(json);
 });
 

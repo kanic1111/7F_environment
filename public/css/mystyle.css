@@ -10,7 +10,7 @@
     background-color: rgba(165, 36, 156, 0.71); */
   }
   .pieStyle{
-    height: 480px;
+    height: 420px;
     /* border-radius:30px;
     background-color: rgba(165, 36, 156, 0.71); */
   }
@@ -65,15 +65,15 @@
   }
   .pieStyle{
     position: absolute;
-    height: 90%;
     left: 0px;
+    top:5%;
     bottom: 0px;
     /* border-radius:30px;
     background-color: rgba(165, 36, 156, 0.71); */
   }
   .chartStyle{
     position: absolute;
-    top:0px;
+    top:5%;
     right: 0px;
     bottom: 0px;
     /* border-radius:30px;
@@ -544,3 +544,4 @@ div.history {
   margin-bottom: 10px;
   width: 100%;
 }
+

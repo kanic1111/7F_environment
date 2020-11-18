@@ -1,5 +1,5 @@
 var outputAmp_B = 0;
-socket.on("CO2", function (data) {
+socket.on("CO2_right", function (data) {
   if (data) {
     outputAmp_B = Number(data);
   }

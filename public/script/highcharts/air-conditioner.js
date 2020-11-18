@@ -1,5 +1,5 @@
 var current = 0;
-socket.on("humid", function (data) {
+socket.on("humid_right", function (data) {
   if (data) {
     current = Number(data);
   }

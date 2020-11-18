@@ -32,9 +32,11 @@ var time_array = []
 MongoClient.connect(process.env.MONGODB, (err, client) => {
     console.log(err)
     let db = client.db("rpi_left");
-    let db2 = client.db("rpi_right")
+    let db2 = client.db("rpi_right");
+    let Storage_db = client.db("Storage_data")
     mongodb = new MongoDB(db);
     mognodb_right = new MongoDB(db2)
+    Storage_data = new MongoDB(Storage_db)
     new Promise(function (resolve, reject) {
         resolve(mongodb.LeftAverageData());
     }).then(function (value) {
@@ -53,6 +55,15 @@ MongoClient.connect(process.env.MONGODB, (err, client) => {
         console.log(new Date() + JSON.stringify(value));
         console.log(value)
     });
+    new Promise(function (resolve, reject) {
+        resolve(Storage_data.StorageAverageData());
+    }).then(function (value) {
+        io.emit('Storage_Avg_temp', Math.round(value[2]*100)/100);
+        io.emit('Storage_Avg_humid', Math.round(value[1]*100)/100);
+        io.emit('Storage_Avg_CO2', Math.round(value[0]*100)/100);
+        console.log(new Date() + JSON.stringify(value));
+        console.log(value)
+    });
 });
 
 const mqttClient = mqtt.connect(process.env.MQTT);
@@ -68,6 +79,7 @@ mqttClient.on('connect', () => {
     mqttClient.subscribe('TVOC_right'); 
     mqttClient.subscribe('7F_FAN')
     mqttClient.subscribe('7F_FAN_2')
+    mqttClient.subscribe('Storage')
 });
 
 mqttClient.on('message', (topic, message) => {
@@ -117,6 +129,14 @@ mqttClient.on('message', (topic, message) => {
             io.emit('fan3', fanStatus2[0]);
             io.emit('fan4', fanStatus2[1]);
             break;
+        case 'Storage':
+            Storage_status = JSON.parse(message)
+            console.log(Storage_status)
+            io.emit('Storage_CO2',Storage_status[0])
+            io.emit('Storage_TVOC',Storage_status[1])
+            io.emit('Storage_humid',Storage_status[2])
+            io.emit('Storage_tempareture',Storage_status[3])
+            break;
         default:
             console.log('pass');
     }
@@ -139,6 +159,15 @@ setInterval(() => {
         io.emit('Avg_temp_right', Math.round(value[2]*100)/100);
         io.emit('Avg_humid_right', Math.round(value[1]*100)/100);
         io.emit('Avg_CO2_right', Math.round(value[0]*100)/100);
+        console.log(new Date() + JSON.stringify(value));
+        console.log(value)
+    });
+    new Promise(function (resolve, reject) {
+        resolve(Storage_data.StorageAverageData());
+    }).then(function (value) {
+        io.emit('Storage_Avg_temp', Math.round(value[2]*100)/100);
+        io.emit('Storage_Avg_humid', Math.round(value[1]*100)/100);
+        io.emit('Storage_Avg_CO2', Math.round(value[0]*100)/100);
         console.log(new Date() + JSON.stringify(value));
         console.log(value)
     });

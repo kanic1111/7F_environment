@@ -70,3 +70,31 @@ socket.on("Avg_CO2_right", function(data){
   document.getElementById("Avg_CO2_right").innerHTML = data;
   console.log(data); 
 })
+socket.on("Storage_CO2", function(data){
+  document.getElementById("Storage_CO2").innerHTML = data;
+  console.log(data); 
+})
+socket.on("Storage_TVOC", function(data){
+  document.getElementById("Storage_TVOC").innerHTML = data;
+  console.log(data); 
+})
+socket.on("Storage_humid", function(data){
+  document.getElementById("Storage_humid").innerHTML = data;
+  console.log(data); 
+})
+socket.on("Storage_tempareture", function(data){
+  document.getElementById("Storage_tempareture").innerHTML = data;
+  console.log(data); 
+})
+socket.on("Storage_Avg_temp", function(data){
+  document.getElementById("Storage_Avg_temp").innerHTML = data;
+  console.log(data); 
+})
+socket.on("Storage_Avg_CO2", function(data){
+  document.getElementById("Storage_Avg_CO2").innerHTML = data;
+  console.log(data); 
+})
+socket.on("Storage_Avg_humid", function(data){
+  document.getElementById("Storage_Avg_humid").innerHTML = data;
+  console.log(data); 
+})

@@ -194,12 +194,8 @@ app.context.render = co.wrap(render({
 }));
 
 router.get('/', index);
-router.post('/ET7044', et7044);
 router.post('/7F_left_fan', SevenFloor_left_fan);
 router.post('/7F_right_fan', SevenFloor_right_fan);
-router.post('/yesterdayAvgPower', yesterdayAvgPower);
-router.post('/cameraPower', cameraPower);
-
 async function index(ctx) {
     ctx.body = await ctx.render('smart', {
         "powerMeterPower": Avg_temp,
@@ -212,28 +208,6 @@ async function index(ctx) {
 // "upsPower_A": piePercent[1].y,
 // "upsPower_B": piePercent[2].y
 
-async function et7044(ctx) {
-    let et7044 = ctx.request.body.data;
-    switch (et7044) {
-        case 'D0':
-            et7044Status[0] = !et7044Status[0];
-            mqttClient.publish('ET7044/write', JSON.stringify(et7044Status));
-            break;
-        case 'D1':
-            et7044Status[1] = !et7044Status[1];
-            mqttClient.publish('ET7044/write', JSON.stringify(et7044Status));
-            break;
-        case 'D2':
-            et7044Status[2] = !et7044Status[2];
-            mqttClient.publish('ET7044/write', JSON.stringify(et7044Status));
-            break;
-        default:
-            console.log('pass');
-            break;
-    }
-    console.log(et7044);
-    ctx.body = et7044;
-}
 async function SevenFloor_left_fan(ctx) {
     let fan_control = ctx.request.body.data;
     switch (fan_control){
@@ -290,18 +264,6 @@ async function SevenFloor_right_fan(ctx) {
             break;
     }
 }
-async function yesterdayAvgPower(ctx) {
-    let yesterdayPower = ctx.request.body;
-    io.emit('yesterdayPower', yesterdayPower);
-    ctx.body = 'ok';
-}
-
-async function cameraPower(ctx){
-    let cameraPowerData = ctx.request.body.cameraPower;
-    await mongodb.insertCameraPower(cameraPowerData);
-    ctx.body = 'ok';
-}
-
 server.listen(process.env.PORT, function () {
     let port = server.address().port;
     console.log("App now running on port", port);

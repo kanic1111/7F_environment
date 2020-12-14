@@ -238,26 +238,28 @@ async function SevenFloor_left_fan(ctx) {
     let fan_control = ctx.request.body.data;
     switch (fan_control){
         case 'fan1':
-            if(fanStatus[0] != '正轉' && fanStatus[0] != '反轉'){
+            if(fanStatus[0] != '抽風' && fanStatus[0] != '進風'){
                 mqttClient.publish('arduino', '1');
             }
-            if(fanStatus[0] != '關閉' && fanStatus[0] != '反轉'){
+            if(fanStatus[0] != '關閉' && fanStatus[0] != '進風'){
                 mqttClient.publish('arduino', '2');
             }
-            if(fanStatus[0] != '正轉' && fanStatus[0] != '關閉'){
+            if(fanStatus[0] != '抽風' && fanStatus[0] != '關閉'){
                 mqttClient.publish('arduino', 'a');
             }
+
             break;
         case 'fan2':
-            if(fanStatus[1] != '正轉' && fanStatus[1] != '反轉'){
+            if(fanStatus[1] != '抽風' && fanStatus[1] != '進風'){
                 mqttClient.publish('arduino', '3');
             }
-            if(fanStatus[1] != '關閉' && fanStatus[1] != '反轉'){
+            if(fanStatus[1] != '關閉' && fanStatus[1] != '進風'){
                 mqttClient.publish('arduino', '4');
             }
-            if(fanStatus[1] != '正轉' && fanStatus[1] != '關閉'){
+            if(fanStatus[1] != '抽風' && fanStatus[1] != '關閉'){
                 mqttClient.publish('arduino', 'b');
             }
+
             break;
     }
 }

@@ -453,7 +453,6 @@
   content: '';
 }
 .battery-name {
-  position: absolute;
   width: 100%;
   color:#ffffff;
   bottom:0px;

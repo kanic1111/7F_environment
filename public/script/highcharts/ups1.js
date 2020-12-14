@@ -24,7 +24,7 @@ $(document).ready(function() {
       }
     };
     var title = {
-      text: '實驗室室溫',
+      text: '實驗室室溫(前門)',
       style: {
         color: '#ffffff'
       }

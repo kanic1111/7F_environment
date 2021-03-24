@@ -194,12 +194,12 @@ app.context.render = co.wrap(render({
 }));
 
 router.get('/', index);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f4e70acb918768084cd25ecf42059d4c05961a0
 router.post('/7F_left_fan', SevenFloor_left_fan);
 router.post('/7F_right_fan', SevenFloor_right_fan);
-router.post('/yesterdayAvgPower', yesterdayAvgPower);
-router.post('/cameraPower', cameraPower);
-
 async function index(ctx) {
     ctx.body = await ctx.render('smart', {
         "powerMeterPower": Avg_temp,
@@ -212,13 +212,17 @@ async function index(ctx) {
 // "upsPower_A": piePercent[1].y,
 // "upsPower_B": piePercent[2].y
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f4e70acb918768084cd25ecf42059d4c05961a0
 async function SevenFloor_left_fan(ctx) {
     let fan_control = ctx.request.body.data;
     console.log(fan_control[0])
     console.log(fan_control[1])
     switch (fan_control[0]){
         case 'fan1':
+<<<<<<< HEAD
             if(fan_control[1]== '正轉' ){
                 mqttClient.publish('arduino', '1');
             }
@@ -226,10 +230,21 @@ async function SevenFloor_left_fan(ctx) {
                 mqttClient.publish('arduino', '2');
             }
             if(fan_control[1]== '關閉'){
+=======
+            if(fanStatus[0] != '抽風' && fanStatus[0] != '進風'){
+                mqttClient.publish('arduino', '1');
+            }
+            if(fanStatus[0] != '關閉' && fanStatus[0] != '進風'){
+                mqttClient.publish('arduino', '2');
+            }
+            if(fanStatus[0] != '抽風' && fanStatus[0] != '關閉'){
+>>>>>>> 7f4e70acb918768084cd25ecf42059d4c05961a0
                 mqttClient.publish('arduino', 'a');
             }
+
             break;
         case 'fan2':
+<<<<<<< HEAD
             if(fan_control[1]== '正轉'){
                 mqttClient.publish('arduino', '3');
             }
@@ -237,8 +252,18 @@ async function SevenFloor_left_fan(ctx) {
                 mqttClient.publish('arduino', '4');
             }
             if(fan_control[1]== '關閉'){
+=======
+            if(fanStatus[1] != '抽風' && fanStatus[1] != '進風'){
+                mqttClient.publish('arduino', '3');
+            }
+            if(fanStatus[1] != '關閉' && fanStatus[1] != '進風'){
+                mqttClient.publish('arduino', '4');
+            }
+            if(fanStatus[1] != '抽風' && fanStatus[1] != '關閉'){
+>>>>>>> 7f4e70acb918768084cd25ecf42059d4c05961a0
                 mqttClient.publish('arduino', 'b');
             }
+
             break;
     }
 }
@@ -271,18 +296,6 @@ async function SevenFloor_right_fan(ctx) {
             break;
     }
 }
-async function yesterdayAvgPower(ctx) {
-    let yesterdayPower = ctx.request.body;
-    io.emit('yesterdayPower', yesterdayPower);
-    ctx.body = 'ok';
-}
-
-async function cameraPower(ctx){
-    let cameraPowerData = ctx.request.body.cameraPower;
-    await mongodb.insertCameraPower(cameraPowerData);
-    ctx.body = 'ok';
-}
-
 server.listen(process.env.PORT, function () {
     let port = server.address().port;
     console.log("App now running on port", port);

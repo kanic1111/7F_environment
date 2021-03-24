@@ -24,7 +24,7 @@ $(document).ready(function() {
       }
     };
     var title = {
-      text: '實驗室空氣濕度',
+      text: '實驗室空氣濕度(前門)',
       style: {
         color: '#ffffff'
       }

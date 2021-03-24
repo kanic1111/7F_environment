@@ -44,7 +44,7 @@ $(document).ready(function() {
     var yAxis = {
       tickInterval: 0.01,
       title: {
-        text: '電流（A)',
+        text: '氣溫（C)',
         style:{
           color: '#ffffff'
         }

@@ -44,7 +44,7 @@ $(document).ready(function() {
     var yAxis = {
       tickInterval: 0.01,
       title: {
-        text: '氣溫(C)',
+        text: '濕度(%)',
         style:{
           color: '#ffffff'
         }

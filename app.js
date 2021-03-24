@@ -29,42 +29,42 @@ let piePercent = [
 let et7044Status, D0, D1, D2;
 var Avg_temp = [] ;  
 var time_array = []
-MongoClient.connect(process.env.MONGODB, (err, client) => {
-    console.log(err)
-    let db = client.db("rpi_left");
-    let db2 = client.db("rpi_right");
-    let Storage_db = client.db("Storage_data")
-    mongodb = new MongoDB(db);
-    mognodb_right = new MongoDB(db2)
-    Storage_data = new MongoDB(Storage_db)
-    new Promise(function (resolve, reject) {
-        resolve(mongodb.LeftAverageData());
-    }).then(function (value) {
-        io.emit('Avg_temp_left', Math.round(value[2]*100)/100);
-        io.emit('Avg_humid_left', Math.round(value[1]*100)/100);
-        io.emit('Avg_CO2_left', Math.round(value[0]*100)/100);
-        console.log(new Date() + JSON.stringify(value));
-        console.log(value)
-    });
-    new Promise(function (resolve, reject) {
-        resolve(mognodb_right.RightAverageData());
-    }).then(function (value) {
-        io.emit('Avg_temp_right', Math.round(value[2]*100)/100);
-        io.emit('Avg_humid_right', Math.round(value[1]*100)/100);
-        io.emit('Avg_CO2_right', Math.round(value[0]*100)/100);
-        console.log(new Date() + JSON.stringify(value));
-        console.log(value)
-    });
-    new Promise(function (resolve, reject) {
-        resolve(Storage_data.StorageAverageData());
-    }).then(function (value) {
-        io.emit('Storage_Avg_temp', Math.round(value[2]*100)/100);
-        io.emit('Storage_Avg_humid', Math.round(value[1]*100)/100);
-        io.emit('Storage_Avg_CO2', Math.round(value[0]*100)/100);
-        console.log(new Date() + JSON.stringify(value));
-        console.log(value)
-    });
-});
+// MongoClient.connect(process.env.MONGODB, (err, client) => {
+//     console.log(err)
+//     let db = client.db("rpi_left");
+//     let db2 = client.db("rpi_right");
+//     let Storage_db = client.db("Storage_data")
+//     mongodb = new MongoDB(db);
+//     mognodb_right = new MongoDB(db2)
+//     Storage_data = new MongoDB(Storage_db)
+//     new Promise(function (resolve, reject) {
+//         resolve(mongodb.LeftAverageData());
+//     }).then(function (value) {
+//         io.emit('Avg_temp_left', Math.round(value[2]*100)/100);
+//         io.emit('Avg_humid_left', Math.round(value[1]*100)/100);
+//         io.emit('Avg_CO2_left', Math.round(value[0]*100)/100);
+//         console.log(new Date() + JSON.stringify(value));
+//         console.log(value)
+//     });
+//     new Promise(function (resolve, reject) {
+//         resolve(mognodb_right.RightAverageData());
+//     }).then(function (value) {
+//         io.emit('Avg_temp_right', Math.round(value[2]*100)/100);
+//         io.emit('Avg_humid_right', Math.round(value[1]*100)/100);
+//         io.emit('Avg_CO2_right', Math.round(value[0]*100)/100);
+//         console.log(new Date() + JSON.stringify(value));
+//         console.log(value)
+//     });
+//     new Promise(function (resolve, reject) {
+//         resolve(Storage_data.StorageAverageData());
+//     }).then(function (value) {
+//         io.emit('Storage_Avg_temp', Math.round(value[2]*100)/100);
+//         io.emit('Storage_Avg_humid', Math.round(value[1]*100)/100);
+//         io.emit('Storage_Avg_CO2', Math.round(value[0]*100)/100);
+//         console.log(new Date() + JSON.stringify(value));
+//         console.log(value)
+//     });
+// });
 
 const mqttClient = mqtt.connect(process.env.MQTT);
 
@@ -143,35 +143,35 @@ mqttClient.on('message', (topic, message) => {
 });
 
 //更新圓餅圖
-setInterval(() => {
-    new Promise(function (resolve, reject) {
-        resolve(mongodb.LeftAverageData());
-    }).then(function (value) {
-        io.emit('Avg_temp_left', Math.round(value[2]*100)/100);
-        io.emit('Avg_humid_left', Math.round(value[1]*100)/100);
-        io.emit('Avg_CO2_left', Math.round(value[0]*100)/100);
-        console.log(new Date() + JSON.stringify(value));
-        console.log(value)
-    });
-    new Promise(function (resolve, reject) {
-        resolve(mognodb_right.RightAverageData());
-    }).then(function (value) {
-        io.emit('Avg_temp_right', Math.round(value[2]*100)/100);
-        io.emit('Avg_humid_right', Math.round(value[1]*100)/100);
-        io.emit('Avg_CO2_right', Math.round(value[0]*100)/100);
-        console.log(new Date() + JSON.stringify(value));
-        console.log(value)
-    });
-    new Promise(function (resolve, reject) {
-        resolve(Storage_data.StorageAverageData());
-    }).then(function (value) {
-        io.emit('Storage_Avg_temp', Math.round(value[2]*100)/100);
-        io.emit('Storage_Avg_humid', Math.round(value[1]*100)/100);
-        io.emit('Storage_Avg_CO2', Math.round(value[0]*100)/100);
-        console.log(new Date() + JSON.stringify(value));
-        console.log(value)
-    });
-}, 2000);
+// setInterval(() => {
+//     new Promise(function (resolve, reject) {
+//         resolve(mongodb.LeftAverageData());
+//     }).then(function (value) {
+//         io.emit('Avg_temp_left', Math.round(value[2]*100)/100);
+//         io.emit('Avg_humid_left', Math.round(value[1]*100)/100);
+//         io.emit('Avg_CO2_left', Math.round(value[0]*100)/100);
+//         console.log(new Date() + JSON.stringify(value));
+//         console.log(value)
+//     });
+//     new Promise(function (resolve, reject) {
+//         resolve(mognodb_right.RightAverageData());
+//     }).then(function (value) {
+//         io.emit('Avg_temp_right', Math.round(value[2]*100)/100);
+//         io.emit('Avg_humid_right', Math.round(value[1]*100)/100);
+//         io.emit('Avg_CO2_right', Math.round(value[0]*100)/100);
+//         console.log(new Date() + JSON.stringify(value));
+//         console.log(value)
+//     });
+//     new Promise(function (resolve, reject) {
+//         resolve(Storage_data.StorageAverageData());
+//     }).then(function (value) {
+//         io.emit('Storage_Avg_temp', Math.round(value[2]*100)/100);
+//         io.emit('Storage_Avg_humid', Math.round(value[1]*100)/100);
+//         io.emit('Storage_Avg_CO2', Math.round(value[0]*100)/100);
+//         console.log(new Date() + JSON.stringify(value));
+//         console.log(value)
+//     });
+// }, 2000);
 
 // setInterval(() => {
 //   mongodb.yesterdayAvgPowerRobot();
@@ -194,7 +194,7 @@ app.context.render = co.wrap(render({
 }));
 
 router.get('/', index);
-router.post('/ET7044', et7044);
+
 router.post('/7F_left_fan', SevenFloor_left_fan);
 router.post('/7F_right_fan', SevenFloor_right_fan);
 router.post('/yesterdayAvgPower', yesterdayAvgPower);
@@ -212,50 +212,31 @@ async function index(ctx) {
 // "upsPower_A": piePercent[1].y,
 // "upsPower_B": piePercent[2].y
 
-async function et7044(ctx) {
-    let et7044 = ctx.request.body.data;
-    switch (et7044) {
-        case 'D0':
-            et7044Status[0] = !et7044Status[0];
-            mqttClient.publish('ET7044/write', JSON.stringify(et7044Status));
-            break;
-        case 'D1':
-            et7044Status[1] = !et7044Status[1];
-            mqttClient.publish('ET7044/write', JSON.stringify(et7044Status));
-            break;
-        case 'D2':
-            et7044Status[2] = !et7044Status[2];
-            mqttClient.publish('ET7044/write', JSON.stringify(et7044Status));
-            break;
-        default:
-            console.log('pass');
-            break;
-    }
-    console.log(et7044);
-    ctx.body = et7044;
-}
+
 async function SevenFloor_left_fan(ctx) {
     let fan_control = ctx.request.body.data;
-    switch (fan_control){
+    console.log(fan_control[0])
+    console.log(fan_control[1])
+    switch (fan_control[0]){
         case 'fan1':
-            if(fanStatus[0] != '正轉' && fanStatus[0] != '反轉'){
+            if(fan_control[1]== '正轉' ){
                 mqttClient.publish('arduino', '1');
             }
-            if(fanStatus[0] != '關閉' && fanStatus[0] != '反轉'){
+            if(fan_control[1]== '反轉'){
                 mqttClient.publish('arduino', '2');
             }
-            if(fanStatus[0] != '正轉' && fanStatus[0] != '關閉'){
+            if(fan_control[1]== '關閉'){
                 mqttClient.publish('arduino', 'a');
             }
             break;
         case 'fan2':
-            if(fanStatus[1] != '正轉' && fanStatus[1] != '反轉'){
+            if(fan_control[1]== '正轉'){
                 mqttClient.publish('arduino', '3');
             }
-            if(fanStatus[1] != '關閉' && fanStatus[1] != '反轉'){
+            if(fan_control[1]== '反轉'){
                 mqttClient.publish('arduino', '4');
             }
-            if(fanStatus[1] != '正轉' && fanStatus[1] != '關閉'){
+            if(fan_control[1]== '關閉'){
                 mqttClient.publish('arduino', 'b');
             }
             break;
@@ -263,26 +244,28 @@ async function SevenFloor_left_fan(ctx) {
 }
 async function SevenFloor_right_fan(ctx) {
     let fan_control = ctx.request.body.data;
-    switch (fan_control){
+    console.log(fan_control[0])
+    console.log(fan_control[1])
+    switch (fan_control[0]){
         case 'fan3':
-            if(fanStatus2[0] != '抽風' && fanStatus2[0] != '進風'){
+            if(fan_control[1] == '抽風'){
                 mqttClient.publish('arduino', '5');
             }
-            if(fanStatus2[0] != '關閉' && fanStatus2[0] != '進風'){
+            if(fan_control[1] == '進風'){
                 mqttClient.publish('arduino', '6');
             }
-            if(fanStatus2[0] != '抽風' && fanStatus2[0] != '關閉'){
+            if(fan_control[1] == '關閉'){
                 mqttClient.publish('arduino', 'c');
             }
             break;
         case 'fan4':
-            if(fanStatus2[1] != '抽風' && fanStatus2[1] != '進風'){
+            if(fan_control[1] == '抽風'){
                 mqttClient.publish('arduino', '7');
             }
-            if(fanStatus2[1] != '關閉' && fanStatus2[1] != '進風'){
+            if(fan_control[1] == '進風'){
                 mqttClient.publish('arduino', '8');
             }
-            if(fanStatus2[1] != '抽風' && fanStatus2[1] != '關閉'){
+            if(fan_control[1] == '關閉'){
                 mqttClient.publish('arduino', 'd');
             }
             break;

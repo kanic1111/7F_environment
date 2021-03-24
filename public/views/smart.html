@@ -18,7 +18,9 @@
   <script src="bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
   <script src="/socket.io/socket.io.js"></script>
-  <script type="text/javascript">
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="popper.min.js"></script>
+  <script >
     var socket = io.connect();
   </script>
   <link rel="stylesheet" type="text/css" href="mystyle.css">
@@ -46,83 +48,13 @@
     //   var textarea = $("#messageList").append("Fifth Avenue, New York City\n");
     //   textarea.scrollTop(textarea[0].scrollHeight - textarea.height());
     // }
-    function D0() {
-      $.ajax({
-        type: "POST",
-        url: "ET7044",
-        dataType: "text",
-        data: {
-          data: "D0"
-        },
-        success: function (data) {
-          console.log(data);
-        },
-        error: function (data) {
-          console.error(data);
-          return false;
-        }
-      });
-    }
-
-    function D1() {
-      $.ajax({
-        type: "POST",
-        url: "ET7044",
-        dataType: "text",
-        data: {
-          data: "D1"
-        },
-        success: function (data) {
-          console.log(data);
-        },
-        error: function (data) {
-          console.error(data);
-          return false;
-        }
-      });
-    }
-
-    function D2() {
-      $.ajax({
-        type: "POST",
-        url: "ET7044",
-        dataType: "text",
-        data: {
-          data: "D2"
-        },
-        success: function (data) {
-          console.log(data);
-        },
-        error: function (data) {
-          console.error(data);
-          return false;
-        }
-      });
-    }
-      function fan1(){
-        $.ajax({
-        type: "POST",
-        url: "/7F_left_fan",
-        dataType: "text",
-        data: {
-          data: "fan1"
-        },
-        success: function (data) {
-          console.log(data);
-        },
-        error: function (data) {
-          console.error(data);
-          return false;
-        }
-      });
-    }
-    function fan2(){
+    function fan1_Exhaust(){
       $.ajax({
         type: "POST",
         url: "/7F_left_fan",
         dataType: "text",
         data: {
-          data: "fan2"
+          data: ["fan1","TEST進風"]
         },
         success: function (data) {
           console.log(data);
@@ -133,13 +65,13 @@
         }
       });
     }
-    function fan3(){
+    function fan1_Suction(){
       $.ajax({
         type: "POST",
-        url: "/7F_right_fan",
+        url: "/7F_left_fan",
         dataType: "text",
         data: {
-          data: "fan3"
+          data: ["fan1","TEST抽風"]
         },
         success: function (data) {
           console.log(data);
@@ -150,13 +82,166 @@
         }
       });
     }
-    function fan4(){
+    function fan1_close(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_left_fan",
+        dataType: "text",
+        data: {
+          data: ["fan1","TEST關閉"]
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan2_Exhaust(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_left_fan",
+        dataType: "text",
+        data: {
+          data: ["fan2","TEST進風"]
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan2_Suction(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_left_fan",
+        dataType: "text",
+        data: {
+          data: ["fan2","TEST抽風"]
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan2_close(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_left_fan",
+        dataType: "text",
+        data: {
+          data: ["fan2","TEST關閉"]
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan3_Exhaust(){
       $.ajax({
         type: "POST",
         url: "/7F_right_fan",
         dataType: "text",
         data: {
-          data: "fan4"
+          data: ["fan3","進風"]
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan3_Suction(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_right_fan",
+        dataType: "text",
+        data: {
+          data: ["fan3","抽風"]
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan3_close(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_right_fan",
+        dataType: "text",
+        data: {
+          data: ["fan3","關閉"]
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan4_Exhaust(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_right_fan",
+        dataType: "text",
+        data: {
+          data: ["fan4","TEST進風"]
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan4_Suction(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_right_fan",
+        dataType: "text",
+        data: {
+          data: ["fan4","TEST抽風"]
+        },
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.error(data);
+          return false;
+        }
+      });
+    }
+    function fan4_close(){
+      $.ajax({
+        type: "POST",
+        url: "/7F_right_fan",
+        dataType: "text",
+        data: {
+          data: ["fan4","TEST關閉"]
         },
         success: function (data) {
           console.log(data);
@@ -181,9 +266,6 @@
           <p class="data-title">實驗室環境狀態</p>
           <div class="battery1-info">
             <div class="battery1">
-              <div id="Thermometer1">
-                <img src="thermometer.svg" alt="" width="64" height="96" title="Bootstrap"  style="float:left">
-              </div>
               <div class="battery-name">
                 <p>左實驗室環境狀態<br>
                   <span id="battery1-status"></span>
@@ -213,9 +295,7 @@
           </div>
           <div class="battery2-info">
             <div class="battery2">
-              <div id="Thermometer">
-                <img src="thermometer.svg" alt="" width="64" height="96" title="Bootstrap"  style="float:left">
-              </div>
+
               <div class="battery-name">
                 <p>右實驗室環境狀態<br>
                   <span id="battery2-status"></span>
@@ -245,9 +325,6 @@
           </div>
           <div class="Storage-info">
             <div class="battery2">
-              <div id="Thermometer">
-                <img src="thermometer.svg" alt="" width="64" height="96" title="Bootstrap"  style="float:left">
-              </div>
               <div class="battery-name">
                 <p>機房環境狀態<br>
                   <span id="battery2-status"></span>
@@ -309,7 +386,17 @@
                 風扇1
               </div>
               <div class="col-md-7 col-sm-6 col-xs-7">
-                <button class="btn btn-primary" id="fan1" onclick="fan1()">waiting data</button>
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="fan1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    waiting data
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color:transparent;" id="fan1">
+                  <button class="btn btn-primary" id="fan1_Suction" onclick="fan1_Suction()"style="width:520px">抽風</button>
+                  <button class="btn btn-primary" id="fan1_Exhaust" onclick="fan1_Exhaust()">排風</button>
+                  <button class="btn btn-primary" id="fan1_stop" onclick="fan1_close()">關閉</button>
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="col-md-6 col-sm-4">
@@ -317,7 +404,17 @@
                 風扇2
               </div>
               <div class="col-md-7 col-sm-6 col-xs-7">
-                <button class="btn btn-primary" id="fan2" onclick="fan2()">waiting data</button>
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="fan2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    waiting data
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color:transparent;" id="fan1">
+                  <button class="btn btn-primary" id="fan2_Suction" onclick="fan2_Suction()"style="width:520px">抽風</button>
+                  <button class="btn btn-primary" id="fan2_Exhaust" onclick="fan2_Exhaust()">排風</button>
+                  <button class="btn btn-primary" id="fan2_stop" onclick="fan2_close()">關閉</button>
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="col-md-6 col-sm-4">
@@ -325,7 +422,17 @@
                 風扇3
               </div>
               <div class="col-md-7 col-sm-6 col-xs-7">
-                <button class="btn btn-primary" id="fan3" onclick="fan3()">waiting data</button>
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="fan3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    waiting data
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color:transparent;" id="fan1">
+                  <button class="btn btn-primary" id="fan3_Suction" onclick="fan3_Suction()"style="width:520px">抽風</button>
+                  <button class="btn btn-primary" id="fan3_Exhaust" onclick="fan3_Exhaust()">排風</button>
+                  <button class="btn btn-primary" id="fan3_stop" onclick="fan3_close()">關閉</button>
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="col-md-6 col-sm-4">
@@ -333,7 +440,17 @@
                 風扇4
               </div>
               <div class="col-md-7 col-sm-6 col-xs-7">
-                <button class="btn btn-primary" id="fan4" onclick="fan4()">waiting data</button>
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="fan4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    waiting data
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color:transparent;" id="fan1">
+                  <button class="btn btn-primary" id="fan4_Suction" onclick="fan4_Suction()"style="width:520px">抽風</button>
+                  <button class="btn btn-primary" id="fan4_Exhaust" onclick="fan4_Exhaust()">排風</button>
+                  <button class="btn btn-primary" id="fan4_stop" onclick="fan4_close()">關閉</button>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

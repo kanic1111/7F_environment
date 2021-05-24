@@ -213,10 +213,10 @@ async function SevenFloor_left_fan(ctx) {
     console.log(fan_control[1])
     switch (fan_control[0]){
         case 'fan1':
-            if(fan_control[1]== '抽風' ){
+            if(fan_control[1]== '正轉' ){
                 mqttClient.publish('arduino', '1');
             }
-            if(fan_control[1]== '進風'){
+            if(fan_control[1]== '反轉'){
                 mqttClient.publish('arduino', '2');
             }
             if(fan_control[1]== '關閉'){
@@ -224,10 +224,10 @@ async function SevenFloor_left_fan(ctx) {
             }
             break;
         case 'fan2':
-            if(fan_control[1]== '抽風'){
+            if(fan_control[1]== '正轉'){
                 mqttClient.publish('arduino', '3');
             }
-            if(fan_control[1]== '進風'){
+            if(fan_control[1]== '反轉'){
                 mqttClient.publish('arduino', '4');
             }
             if(fan_control[1]== '關閉'){
